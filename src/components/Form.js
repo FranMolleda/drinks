@@ -17,7 +17,7 @@ const Form = () => {
     setConsult(true);
   };
   return (
-    <form className="col-12" onSubmit={handleForm}>
+    <form className="col-12 mb-3" onSubmit={handleForm}>
       <fieldset className="text-center">
         <legend>Search by category and ingredient</legend>
       </fieldset>
