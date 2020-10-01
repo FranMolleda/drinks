@@ -17,8 +17,6 @@ const RecipesProvider = (props) => {
     const ApiRecipes = async () => {
       if (consult) {
         const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}&c=${category}`;
-        const url2 = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin&c=Ordinary_Drink
-            `;
         const response = await axios(url);
         setRecipe(response.data.drinks);
       }
