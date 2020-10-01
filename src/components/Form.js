@@ -1,12 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ContextCategory } from "../context/ContextCategory";
+import { ContextRecipes } from "../context/ContextRecipes";
 
 const Form = () => {
+  const [search, setSearch] = useState({ ingredient: "", category: "" });
   const { categories } = useContext(ContextCategory);
+  const { setSearchRecipe, setConsult } = useContext(ContextRecipes);
 
-  console.log(categories);
+  const handleInput = (e) => {
+    setSearch({ ...search, [e.target.name]: e.target.value });
+  };
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    setSearchRecipe(search);
+    setConsult(true);
+  };
   return (
-    <form className="col-12">
+    <form className="col-12" onSubmit={handleForm}>
       <fieldset className="text-center">
         <legend>Search by category and ingredient</legend>
       </fieldset>
@@ -15,15 +26,20 @@ const Form = () => {
           <input
             type="text"
             className="form-control"
-            name="name"
+            name="ingredient"
             placeholder="Search by ingredient"
+            onChange={handleInput}
           />
         </div>
         <div className="col-md-4">
-          <select name="category" className="form-control">
+          <select
+            name="category"
+            className="form-control"
+            onChange={handleInput}
+          >
             <option value="">-- Select category --</option>
             {categories.map((category, i) => (
-              <option key={i} value={category.strCategory}>
+              <option key={i} name="category" value={category.strCategory}>
                 {category.strCategory}
               </option>
             ))}
