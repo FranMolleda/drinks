@@ -40,7 +40,21 @@ const Recipe = ({ oneRecipe }) => {
 
   const { recipe, setRecipe, setIdRecipe } = useContext(ModalContext);
 
-  console.log(recipe);
+  //Muestra y formatea los ingredientes
+  const showIngredients = (recipe) => {
+    let ingredients = [];
+    for (let i = 1; i < 16; i++) {
+      if (recipe[`strIngredient${i}`]) {
+        ingredients.push(
+          <li key={i}>
+            {recipe[`strIngredient${i}`]} {recipe[`strMeasure${i}`]}
+          </li>
+        );
+      }
+    }
+    return ingredients;
+  };
+
   return (
     <div className="col-md-4 mb-3">
       <div className="card">
@@ -50,6 +64,7 @@ const Recipe = ({ oneRecipe }) => {
           src={oneRecipe.strDrinkThumb}
           alt={`Images of ${oneRecipe.strDrink}`}
         />
+
         <button
           type="button"
           className="btn btn-block btn-primary"
@@ -77,6 +92,8 @@ const Recipe = ({ oneRecipe }) => {
               src={recipe.strDrinkThumb}
               alt={recipe.strDrink}
             />
+            <h3>Ingredients & Quantity</h3>
+            <ul>{showIngredients(recipe)}</ul>
           </div>
         </Modal>
       </div>
