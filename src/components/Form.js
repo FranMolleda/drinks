@@ -6,18 +6,24 @@ const Form = () => {
   const [search, setSearch] = useState({ ingredient: "", category: "" });
   const { categories } = useContext(ContextCategory);
   const { setSearchRecipe, setConsult } = useContext(ContextRecipes);
-
+  const [error, setError] = useState(false);
   const handleInput = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
   };
 
   const handleForm = (e) => {
     e.preventDefault();
+    if (search.ingredient.trim() === "" || search.category.trim() === "") {
+      setError(true);
+      return;
+    }
+    setError(false);
     setSearchRecipe(search);
     setConsult(true);
   };
   return (
     <form className="col-12 mb-3" onSubmit={handleForm}>
+      {error ? <p className="error">Please complete all fields</p> : null}
       <fieldset className="text-center">
         <legend>Search by category and ingredient</legend>
       </fieldset>

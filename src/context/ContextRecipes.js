@@ -22,7 +22,7 @@ const RecipesProvider = (props) => {
       }
     };
     ApiRecipes();
-  }, [searchrecipe, ingredient]);
+  }, [searchrecipe, ingredient, category, consult]);
 
   return (
     <ContextRecipes.Provider
