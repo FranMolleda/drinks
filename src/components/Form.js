@@ -5,7 +5,9 @@ import { ContextRecipes } from "../context/ContextRecipes";
 const Form = () => {
   const [search, setSearch] = useState({ ingredient: "", category: "" });
   const { categories } = useContext(ContextCategory);
-  const { setSearchRecipe, setConsult } = useContext(ContextRecipes);
+  const { setSearchRecipe, setConsult, setLoading } = useContext(
+    ContextRecipes
+  );
   const [error, setError] = useState(false);
   const handleInput = (e) => {
     setSearch({ ...search, [e.target.name]: e.target.value });
@@ -17,6 +19,14 @@ const Form = () => {
       setError(true);
       return;
     }
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      //Total
+    }, 2000);
+
     setError(false);
     setSearchRecipe(search);
     setConsult(true);
