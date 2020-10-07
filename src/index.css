@@ -10,10 +10,12 @@ body {
   min-height: 100%;
 }
 
+
 .error {
   background-color: #ec3a49;
   color: white;
   padding: 1rem;
+  text-align: center
 }
 
 header {

@@ -10,6 +10,7 @@ const RecipesProvider = (props) => {
     category: "",
   });
   const [consult, setConsult] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { ingredient, category } = searchrecipe;
 
@@ -26,7 +27,15 @@ const RecipesProvider = (props) => {
 
   return (
     <ContextRecipes.Provider
-      value={{ searchrecipe, setSearchRecipe, recipe, setRecipe, setConsult }}
+      value={{
+        searchrecipe,
+        setSearchRecipe,
+        recipe,
+        setRecipe,
+        setConsult,
+        loading,
+        setLoading,
+      }}
     >
       {props.children}
     </ContextRecipes.Provider>
